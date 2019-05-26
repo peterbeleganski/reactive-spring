@@ -13,9 +13,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Employee {
 
     @Id
-    @UniqueElements
     private String id;
 
+    @UniqueElements
     private String name;
 
     private String department;

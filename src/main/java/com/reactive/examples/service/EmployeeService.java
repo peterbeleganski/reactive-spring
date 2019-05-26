@@ -2,6 +2,7 @@ package com.reactive.examples.service;
 
 import com.reactive.examples.model.Employee;
 import com.reactive.examples.repository.EmployeeRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -10,16 +11,13 @@ import reactor.core.publisher.Mono;
  * @author Petar Beleganski
  */
 @Service
+@RequiredArgsConstructor
 public class EmployeeService {
 
-    private EmployeeRepository employeeRepository;
-
-    public EmployeeService(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
-    }
+    private final EmployeeRepository employeeRepository;
 
     public Mono<Employee> create(Employee employee) {
-        return employeeRepository.save(employee)/*.flatMap(Mono::just)*/;
+        return employeeRepository.save(employee);
     }
 
     public Mono<Employee> findById(String id) {
