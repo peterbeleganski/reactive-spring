@@ -2,6 +2,7 @@ package com.reactive.examples.controller;
 
 import com.reactive.examples.model.Employee;
 import com.reactive.examples.service.EmployeeService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,13 +20,10 @@ import reactor.core.publisher.Mono;
  */
 @RestController
 @RequestMapping("/employees")
+@RequiredArgsConstructor
 public class EmployeeController {
 
-    private EmployeeService employeeService;
-
-    public EmployeeController(EmployeeService employeeService) {
-        this.employeeService = employeeService;
-    }
+    private final EmployeeService employeeService;
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
